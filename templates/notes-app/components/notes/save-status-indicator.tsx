@@ -49,9 +49,7 @@ export function SaveStatusIndicator({
 			{status === "error" && (
 				<>
 					<AlertCircle className="h-4 w-4 text-destructive" />
-					<span className="text-destructive">
-						{error || "Failed to save"}
-					</span>
+					<span className="text-destructive">{error || "Failed to save"}</span>
 					{onRetry && (
 						<Button
 							variant="ghost"

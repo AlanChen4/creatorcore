@@ -21,6 +21,5 @@ export default async function NotePage({ params }: NotePageProps) {
 		notFound();
 	}
 
-
-	return <NoteForm note={note} mode="edit" />
+	return <NoteForm note={note} mode="edit" />;
 }
