@@ -14,21 +14,73 @@ A beginner-friendly template for building full-stack applications with authentic
 
 ## Quick Start
 
+### 0. Install pnpm (if you don't have it yet)
+
+This project expects pnpm. The simplest way is to use Corepack (ships with Node.js):
+
+```bash
+corepack enable
+corepack prepare pnpm@10.13.1 --activate
+```
+
+Verify:
+
+```bash
+pnpm --version
+```
+
 ### 1. Copy This Template
 
 ```bash
 cp -r templates/notes-app my-project
 cd my-project
+```
+
+### 2. Set Up Git (required for Husky hooks)
+
+Husky installs Git hooks during `pnpm install`, but it only works if a `.git` folder exists.
+
+If you already have a GitHub account:
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+```
+
+Create an empty repository on GitHub, then connect and push:
+
+```bash
+git remote add origin https://github.com/<your-username>/<your-repo>.git
+git push -u origin main
+```
+
+If you don't have a GitHub account yet (local Git only):
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+Then install dependencies:
+
+```bash
 pnpm install
 ```
 
-### 2. Set Up Supabase
+### 3. Set Up Supabase
 
 1. Create a free account at [supabase.com](https://supabase.com)
 2. Create a new project
-3. Go to **Settings > API** to find your keys
+3. Go to **Settings > API**
+4. Copy the **Project URL** (used as `NEXT_PUBLIC_SUPABASE_URL`)
+5. Copy the **anon public** API key (used as `NEXT_PUBLIC_SUPABASE_ANON_KEY`)
 
-### 3. Configure Environment Variables
+The Project URL tells the app which Supabase instance to talk to. The anon public key is safe to use in the browser and lets your app make requests that are allowed by Row Level Security policies.
+
+### 4. Configure Environment Variables
 
 Copy the example environment file:
 
@@ -43,7 +95,7 @@ NEXT_PUBLIC_SUPABASE_URL=https://gjkzzuqjiekpkebybmpw.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_isLrYzMnISWRMZdguWwpIQ_ia1vXZFO
 ```
 
-### 4. Set Up the Database
+### 5. Set Up the Database
 
 Install the Supabase CLI if you haven't already:
 
@@ -69,7 +121,7 @@ Push the migrations to your database:
 supabase db push
 ```
 
-### 5. Run the Development Server
+### 6. Run the Development Server
 
 ```bash
 pnpm dev
